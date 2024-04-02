@@ -11,6 +11,25 @@ export function start() {
   }
 }
 
+// Set initial Android PWA theme color using hard-coded values
+function setInitialThemeColor() {
+  if (window.matchMedia) {
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#030303');
+    } else {
+       document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff');
+    }
+  }
+}
+setInitialThemeColor();
+
+// Update Android PWA theme color using --color-content-bg CSS value
+function updateThemeColor() {
+  const mainBackgroundColor = getComputedStyle(document.body).getPropertyValue('--color-content-bg').trim();
+  document.querySelector('meta[name="theme-color"]').setAttribute('content', mainBackgroundColor);
+}
+setInterval(updateThemeColor, 1000);
+
 // Hide the top bar when scrolling down, show it when scrolling up
 let lastScrollTop = 0;
 let lastScrollDirection = 0;

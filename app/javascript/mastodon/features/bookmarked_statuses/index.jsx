@@ -99,7 +99,6 @@ class Bookmarks extends ImmutablePureComponent {
           onLoadMore={this.handleLoadMore}
           emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}
-          withCounters
         />
 
         <Helmet>

@@ -199,7 +199,6 @@ class AccountTimeline extends ImmutablePureComponent {
           emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}
           timelineId='account'
-          withCounters
         />
       </Column>
     );

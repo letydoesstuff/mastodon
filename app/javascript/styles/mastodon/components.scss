@@ -4373,11 +4373,19 @@ a.status-card {
     outline: $ui-button-focus-outline;
   }
 
+  .no-reduce-motion .icon {
+    transition: transform 0.15s ease-in-out;
+  }
+
   &.active {
     color: $primary-text-color;
 
     &:hover {
       color: $primary-text-color;
+    }
+
+    .icon {
+      transform: rotate(60deg);
     }
   }
 
@@ -5624,7 +5632,7 @@ a.status-card {
   user-select: text;
   display: flex;
 
-  @media screen and (max-width: $no-gap-breakpoint) {
+  @media screen and (width <= 630px) {
     margin-top: auto;
   }
 }
@@ -10153,6 +10161,7 @@ noscript {
     font-weight: 500;
     font-size: 11px;
     line-height: 16px;
+    word-break: keep-all;
 
     &__badge {
       background: $ui-button-background-color;

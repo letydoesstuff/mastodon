@@ -240,6 +240,18 @@ module ApplicationHelper
     EmojiFormatter.new(html, custom_emojis, other_options.merge(animate: prefers_autoplay?)).to_s
   end
 
+  def instance_presenter
+    @instance_presenter ||= InstancePresenter.new
+  end
+
+  def favicon_path(size = '48')
+    instance_presenter.favicon&.file&.url(size)
+  end
+
+  def app_icon_path(size = '48')
+    instance_presenter.app_icon&.file&.url(size)
+  end
+
   private
 
   def storage_host_var

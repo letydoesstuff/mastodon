@@ -82,7 +82,7 @@ class Status < ApplicationRecord
   has_many :local_reblogged, -> { merge(Account.local) }, through: :reblogs, source: :account
   has_many :local_bookmarked, -> { merge(Account.local) }, through: :bookmarks, source: :account
 
-  has_and_belongs_to_many :tags
+  has_and_belongs_to_many :tags # rubocop:disable Rails/HasAndBelongsToMany
 
   has_one :preview_cards_status, inverse_of: :status, dependent: :delete
 
@@ -266,7 +266,7 @@ class Status < ApplicationRecord
   end
 
   def reported?
-    @reported ||= Report.where(target_account: account).unresolved.exists?(['? = ANY(status_ids)', id])
+    @reported ||= account.targeted_reports.unresolved.exists?(['? = ANY(status_ids)', id]) || account.strikes.exists?(['? = ANY(status_ids)', id.to_s])
   end
 
   def emojis

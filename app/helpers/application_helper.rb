@@ -86,7 +86,7 @@ module ApplicationHelper
   def html_title
     safe_join(
       [content_for(:page_title).to_s.chomp, title]
-      .select(&:present?),
+      .compact_blank,
       ' - '
     )
   end
@@ -106,11 +106,16 @@ module ApplicationHelper
   end
 
   def material_symbol(icon, attributes = {})
-    inline_svg_tag(
-      "400-24px/#{icon}.svg",
-      class: ['icon', "material-#{icon}"].concat(attributes[:class].to_s.split),
-      role: :img,
-      data: attributes[:data]
+    safe_join(
+      [
+        inline_svg_tag(
+          "400-24px/#{icon}.svg",
+          class: ['icon', "material-#{icon}"].concat(attributes[:class].to_s.split),
+          role: :img,
+          data: attributes[:data]
+        ),
+        ' ',
+      ]
     )
   end
 
@@ -154,6 +159,7 @@ module ApplicationHelper
 
   def body_classes
     output = body_class_string.split
+    output << content_for(:body_classes)
     output << "theme-#{current_theme.parameterize}"
     output << 'system-font' if current_account&.user&.setting_system_font_ui
     output << (current_account&.user&.setting_reduce_motion ? 'reduce-motion' : 'no-reduce-motion')
@@ -235,22 +241,6 @@ module ApplicationHelper
 
   def mascot_url
     full_asset_url(instance_presenter.mascot&.file&.url || frontend_asset_path('images/elephant_ui_plane.svg'))
-  end
-
-  def instance_presenter
-    @instance_presenter ||= InstancePresenter.new
-  end
-
-  def favicon_path(size = '48')
-    instance_presenter.favicon&.file&.url(size)
-  end
-
-  def app_icon_path(size = '48')
-    instance_presenter.app_icon&.file&.url(size)
-  end
-
-  def use_mask_icon?
-    instance_presenter.app_icon.blank?
   end
 
   private

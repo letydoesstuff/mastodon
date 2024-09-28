@@ -7,7 +7,6 @@ be:
     hosted_on: Mastodon месціцца на %{domain}
     title: Пра нас
   accounts:
-    follow: Падпісацца
     followers:
       few: Падпісчыка
       many: Падпісчыкаў
@@ -62,6 +61,7 @@ be:
       demote: Панізіць у правах
       destroyed_msg: Даныя %{username} цяпер у чарзе на прымусовае выдаленне
       disable: Замарозіць
+      disable_sign_in_token_auth: Выключыць аўтэнтыфікацыю па токену эл. пошты
       disable_two_factor_authentication: Адключыць 2FA
       disabled: Замарожаны
       display_name: Бачнае імя
@@ -70,6 +70,7 @@ be:
       email: Электронная пошта
       email_status: Статус электроннай пошты
       enable: Размарозіць
+      enable_sign_in_token_auth: Уключыць аўтэнтыфікацыю па токену эл. пошты
       enabled: Уключана
       enabled_msg: Уліковы запіс %{username} размарожаны
       followers: Падпісчыкі
@@ -456,6 +457,7 @@ be:
         create: Дадаць дамен
         resolve: Вызначыць дамен
         title: Заблакіраваць новы дамен эл. пошты
+      no_email_domain_block_selected: Блакіроўкі даменаў эл. пошты не былі змененыя, таму што ні адзін з іх не быў выбраны
       not_permitted: Забаронена
       resolved_dns_records_hint_html: Даменнае імя ператвараецца ў наступныя дамены MX, якія ў канчатковым выніку адказваюць за прыём электроннай пошты. Блакаванне дамена MX заблакуе рэгістрацыю з любога адраса электроннай пошты, які выкарыстоўвае той жа дамен MX, нават калі бачнае імя дамена адрозніваецца. <strong>Будзьце асцярожныя, каб не заблакіраваць асноўных пастаўшчыкоў электроннай пошты.</strong>
       resolved_through_html: Вызначына каля %{domain}
@@ -1187,7 +1189,6 @@ be:
   crypto:
     errors:
       invalid_key: гэта не сапраўдны Ed25519 або Curve25519 ключ
-      invalid_signature: гэта не сапраўдная Ed25519 сігнатура
   date:
     formats:
       default: "%d.%m.%Y"
@@ -1253,8 +1254,6 @@ be:
       your_appeal_approved: Ваша абскарджанне было ўхвалена
       your_appeal_pending: Вы адправілі апеляцыю
       your_appeal_rejected: Ваша абскарджанне было адхілена
-  domain_validator:
-    invalid_domain: не з'яўляецца сапраўдным даменным імем
   edit_profile:
     basic_information: Асноўная інфармацыя
     hint_html: "<strong>Наладзьце тое, што людзі будуць бачыць у вашым профілі і побач з вашымі паведамленнямі.</strong> Іншыя людзі з большай верагоднасцю будуць сачыць і ўзаемадзейнічаць з вамі, калі ў вас ёсць запоўнены профіль і фота профілю."
@@ -1723,7 +1722,6 @@ be:
     delete: Выдаленне ўліковага запісу
     development: Распрацоўка
     edit_profile: Рэдагаваць профіль
-    export: Экспарт даных
     featured_tags: Выбраныя хэштэгі
     import: Імпарт
     import_and_export: Імпарт і экспарт
@@ -1777,27 +1775,12 @@ be:
     edited_at_html: Адрэдагавана %{date}
     errors:
       in_reply_not_found: Здаецца, допіс, на які вы спрабуеце адказаць, не існуе.
-    open_in_web: Адчыніць у вэб-версіі
     over_character_limit: перавышаная колькасць сімвалаў у %{max}
     pin_errors:
       direct: Допісы, бачныя толькі згаданым карыстальнікам, не могуць быць замацаваныя
       limit: Вы ўжо замацавалі максімальную колькасць допісаў
       ownership: Немагчыма замацаваць чужы допіс
       reblog: Немагчыма замацаваць пашырэнне
-    poll:
-      total_people:
-        few: "%{count} чалавекі"
-        many: "%{count} чалавек"
-        one: "%{count} чалавек"
-        other: "%{count} чалавека"
-      total_votes:
-        few: "%{count} галасы"
-        many: "%{count} галасоў"
-        one: "%{count} голас"
-        other: "%{count} голасу"
-      vote: Прагаласаваць
-    show_more: Паказаць больш
-    show_thread: Паказаць ланцуг
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Асабіста

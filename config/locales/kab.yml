@@ -268,6 +268,20 @@ kab:
       no_file: Ula d yiwen ufaylu ma yettwafran
     export_domain_blocks:
       no_file: Ulac afaylu yettwafernen
+    fasp:
+      debug:
+        callbacks:
+          delete: Kkes
+          ip: Tansa IP
+      providers:
+        delete: Kkes
+        name: Isem
+        providers: Asaǧǧaw
+        registrations:
+          confirm: Sentem
+        save: Sekles
+        sign_in: Qqen
+      title: FASP
     follow_recommendations:
       language: I tutlayt
       status: Addad
@@ -385,16 +399,20 @@ kab:
         view_dashboard: Timẓriwt n tfelwit
     rules:
       add_new: Rnu alugen
+      add_translation: Ad yernu tasuqilt
       delete: Kkes
       edit: Ẓreg alugen
       empty: Mazal ur ttwasbadun ara yilugan n uqeddac.
       title: Ilugan n uqeddac
+      translation: Tasuqilt
+      translations: Tisuqilin
     settings:
       about:
         title: Ɣef
       appearance:
         title: Udem
       discovery:
+        privacy: Tabaḍnit
         profile_directory: Akaram n imaɣnuten
         title: Asnirem
         trends: Ayen mucaɛen
@@ -419,13 +437,13 @@ kab:
       account: Ameskar
       application: Asnas
       back_to_account: Tuɣalin ɣer usebter n umiḍan
+      contents: Agbur
       deleted: Yettwakkes
       favourites: Imenyafen
       language: Tutlayt
       media:
         title: Amidya
       open: Ldi tasuffeɣt
-      title: Tisuffaɣ n umiḍan
       trending: Inezzaɣ
       visibility: Abani
       with_media: S umidya
@@ -446,6 +464,14 @@ kab:
       oldest: Aqbur
       search: Anadi
       title: Ihacṭagen
+    terms_of_service:
+      changelog: Amaynut
+      draft: Arewway
+      history: Amazray
+      live: Srid
+      publish: Asuffeɣ
+      save_draft: Sekles arewway
+      title: Tiwtilin n useqdec
     title: Tadbelt
     trends:
       allow: Sireg
@@ -517,7 +543,6 @@ kab:
     logout: Ffeɣ
     migrate_account: Gujj ɣer umiḍan nniḍen
     or_log_in_with: Neɣ eqqen s
-    privacy_policy_agreement_html: Ɣriɣ yerna qebleɣ <a href="%{privacy_policy_path}" target="_blank">tasertit n tbaḍnit</a>
     progress:
       confirm: Sentem imayl
       details: Isalli-inek
@@ -540,13 +565,11 @@ kab:
     security: Taɣellist
     set_new_password: Egr-d awal uffir amaynut
     setup:
-      email_settings_hint_html: Sit ɣef useɣwen i ak-d-nceyyeε akken ad tesfeqdeḍ %{email}. Ad nerǧu da kan.
       link_not_received: Ur k-id-iṣaḥ ara wassaɣ ?
     sign_in:
       preamble_html: Kcem ar <strong>%{domain}</strong> s inekcam-inek n tuqqna. Ma yella yezga-d umiḍan-ik deg uqeddac-nniḍen, ur tezmireḍ ara ad tkecmeḍ sya.
       title: Akeččum ɣer %{domain}
     sign_up:
-      preamble: S umiḍan deg uqeddac-a n Mastodon, ad tizmireḍ ad tḍefreḍ win i ak·kem-yehwan deg uẓeṭṭa, anida yebɣu yili umiḍan-nnsen.
       title: Iyya ad d-nessewjed tiɣawsiwin i %{domain}.
     status:
       account_status: Addad n umiḍan
@@ -832,6 +855,8 @@ kab:
         one: "%{count} n tbidyutt"
         other: "%{count} n tbidyutin"
     edited_at_html: Tettwaẓreg ass n %{date}
+    quote_policies:
+      public: Yal yiwen
     title: '%{name} : "%{quote}"'
     visibilities:
       direct: Usrid
@@ -853,6 +878,8 @@ kab:
       '7889238': 3 n wayyuren
   stream_entries:
     sensitive_content: Agbur amḥulfu
+  terms_of_service:
+    title: Tiwtilin n useqdec
   themes:
     contrast: Maṣṭudun (agnil awriran)
     default: Maṣṭudun (Aberkan)
@@ -875,6 +902,8 @@ kab:
   user_mailer:
     appeal_approved:
       action: Iɣewwaṛen n umiḍan
+    terms_of_service_changed:
+      sign_off: Agraw n %{domain}
     warning:
       categories:
         spam: Aspam
@@ -902,7 +931,6 @@ kab:
       hashtags_view_more: Sken-d ugar n yihacṭagen inezzaɣ
       post_step: Ini-as azul i umaḍal s uḍris, s tiwlafin, s tividyutin neɣ s tefranin.
       post_title: Aru tasuffeɣt-inek·inem tamezwarut
-      share_action: Bḍu
       share_step: Init-asen i yimeddukal-nwen amek ara ken-id-afen deg Mastodon.
       share_title: Bḍu amaɣnu-inek·inem n Mastodon
       sign_in_action: Qqen

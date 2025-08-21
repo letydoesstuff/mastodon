@@ -184,6 +184,7 @@ nan:
         create_domain_block: 加添封鎖ê域名
         create_email_domain_block: 加添電子phue域名ê封鎖
         create_ip_block: 加添IP規則
+        create_relay: 建立中繼
         create_unavailable_domain: 建立bē當用ê域名
         create_user_role: 建立角色
         demote_user: Kā用者降級
@@ -195,18 +196,22 @@ nan:
         destroy_email_domain_block: Thâi掉電子phue域名ê封鎖
         destroy_instance: 清掉域名
         destroy_ip_block: Thâi掉IP規則
+        destroy_relay: Thâi掉中繼
         destroy_status: Thâi掉PO文
         destroy_unavailable_domain: Thâi掉bē當用ê域名
         destroy_user_role: Thâi掉角色
         disable_2fa_user: 停止用雙因素認證
         disable_custom_emoji: 停止用自訂ê Emoji
+        disable_relay: 停止用中繼
         disable_sign_in_token_auth_user: 停止用使用者電子phue ê token認證
         disable_user: 停止用口座
         enable_custom_emoji: 啟用自訂ê Emoji
+        enable_relay: 啟用中繼
         enable_sign_in_token_auth_user: 啟用使用者電子phue ê token認證
         enable_user: 啟用口座
         memorialize_account: 設做故人ê口座
         promote_user: Kā用者升級
+        publish_terms_of_service: 公佈服務ê使用規則
         reject_appeal: 拒絕申訴
         reject_user: 拒絕用者
         remove_avatar_user: Thâi掉標頭
@@ -244,6 +249,7 @@ nan:
         create_domain_block_html: "%{name} 封鎖域名 %{target}"
         create_email_domain_block_html: "%{name} kā 電子phue域名 %{target} 封鎖ah"
         create_ip_block_html: "%{name} 建立 IP %{target} ê規則"
+        create_relay_html: "%{name} 建立中繼 %{target}"
         create_unavailable_domain_html: "%{name} 停止送kàu域名 %{target}"
         create_user_role_html: "%{name} 建立 %{target} 角色"
         demote_user_html: "%{name} kā用者 %{target} 降級"
@@ -255,18 +261,22 @@ nan:
         destroy_email_domain_block_html: "%{name} kā 電子phue域名 %{target} 取消封鎖ah"
         destroy_instance_html: "%{name} 清除域名 %{target}"
         destroy_ip_block_html: "%{name} thâi掉 IP %{target} ê規則"
+        destroy_relay_html: "%{name} thâi掉中繼 %{target}"
         destroy_status_html: "%{name} kā %{target} ê PO文thâi掉"
         destroy_unavailable_domain_html: "%{name} 恢復送kàu域名 %{target}"
         destroy_user_role_html: "%{name} thâi掉 %{target} 角色"
         disable_2fa_user_html: "%{name} 停止使用者 %{target} 用雙因素驗證"
         disable_custom_emoji_html: "%{name} kā 新ê emoji %{target} 停止使用ah"
+        disable_relay_html: "%{name} 停止使用中繼 %{target}"
         disable_sign_in_token_auth_user_html: "%{name} 停止 %{target} 用電子phue ê token驗證"
         disable_user_html: "%{name} kā 用者 %{target} 設做bē當登入"
         enable_custom_emoji_html: "%{name} kā 新ê emoji %{target} 啟用ah"
+        enable_relay_html: "%{name} 啟用中繼 %{target}"
         enable_sign_in_token_auth_user_html: "%{name} 啟用 %{target} ê電子phue ê token驗證"
         enable_user_html: "%{name} kā 用者 %{target} 設做允准登入"
         memorialize_account_html: "%{name} kā %{target} 設做故人口座"
         promote_user_html: "%{name} kā 用者 %{target} 升級"
+        publish_terms_of_service_html: "%{name} 公佈服務規則ê更新"
         reject_appeal_html: "%{name} 拒絕 %{target} 所寫ê tuì審核決定ê投訴"
         reject_user_html: "%{name} 拒絕 %{target} ê 註冊"
         remove_avatar_user_html: "%{name} thâi掉 %{target} ê標頭"
@@ -296,6 +306,7 @@ nan:
       title: 審查日誌
       unavailable_instance: "（域名bē當用）"
     announcements:
+      back: 倒去公告
       destroyed_msg: 公告成功thâi掉ah！
       edit:
         title: 編輯公告
@@ -304,6 +315,10 @@ nan:
       new:
         create: 加添公告
         title: 新ê公告
+      preview:
+        disclaimer: 因為用者bē當退出，電子批ê通知應該限制tī重要ê公告，比論個人資料洩出，á是關掉服侍器ê通知。
+        explanation_html: Tsit封email ē送hōo <strong>%{display_count} ê用者</strong>。Email ē包括下跤ê文字：
+        title: 先kā公告通知看māi
       publish: 公開
       published_msg: 公告成功公佈ah！
       scheduled_for: 排tī %{time}
@@ -457,6 +472,36 @@ nan:
       new:
         title: 輸入域名封鎖
       no_file: Iáu bē揀檔案
+    fasp:
+      debug:
+        callbacks:
+          created_at: 建立佇
+          delete: Thâi掉
+          ip: IP地址
+          request_body: 請求主文
+          title: 除蟲callback
+      providers:
+        active: 有效
+        base_url: 基本URL
+        callback: Callback
+        delete: Thâi掉
+        edit: 編輯提供者
+        finish_registration: 完成註冊
+        name: 名
+        providers: 提供者
+        public_key_fingerprint: 公開鎖匙ê指頭仔螺(public key fingerprint)
+        registration_requested: 註冊請求ah
+        registrations:
+          confirm: 確認
+          description: Lí收著FASP ê註冊ah。nā準lí bô啟動，請拒絕。若有啟動，請佇確認註冊以前，細膩比較名kap鎖匙ê指頭仔螺。
+          reject: 拒絕
+          title: 確認FASP註冊
+        save: 儲存
+        select_capabilities: 揀功能
+        sign_in: 登入
+        status: 狀態
+        title: 聯邦宇宙輔助服務提供者 (FASP)
+      title: FASP
     follow_recommendations:
       description_html: "<strong>跟tuè建議幫tsān新用者緊tshuē著心適ê內容</strong>。Nā使用者無hām別lâng有夠額ê互動，來形成個人化ê跟tuè建議，就ē推薦tsiah ê口座。In是佇指定語言內底，由最近上tsia̍p參與ê，kap上tsē lâng跟tuè ê口座，用ta̍k kang做基礎，相濫koh計算出來ê。"
       language: 揀語言
@@ -522,6 +567,13 @@ nan:
         all: 全部
         limited: 受限制
         title: 管理
+      moderation_notes:
+        create: 加添管理筆記
+        created_msg: 站臺ê管理記錄成功建立！
+        description_html: 檢視á是替別ê管理者kap未來ê家己留筆記
+        destroyed_msg: 站臺ê管理記錄成功thâi掉！
+        placeholder: 關係本站、行ê行動，á是其他通幫tsān lí未來管本站ê資訊。
+        title: 管理ê筆記
       private_comment: 私人評論
       public_comment: 公開ê評論
       purge: 清除
@@ -637,24 +689,12 @@ nan:
         manage_announcements: 管理公告
     statuses:
       language: 語言
-      title: 口座ê PO文
     trends:
       tags:
         dashboard:
           tag_languages_dimension: Tsia̍p用ê語言
-  auth:
-    privacy_policy_agreement_html: 我有讀，同意<a href="%{privacy_policy_path}" target="_blank">隱私權政策</a>
-    setup:
-      email_settings_hint_html: 請點gún所送ê連結來驗證 %{email}。Gún tī tsia等lí。
-    sign_up:
-      preamble: 用tī tsit臺Mastodon服侍器ê口座，lí thang跟tuè其他佇tsit ê網路ê lâng，無論in ê口座khǹg tī tueh。
-  imports:
-    overwrite_preambles:
-      blocking_html: Lí teh-beh用<strong>%{filename}</strong> 內底ê <strong>%{total_items} ê口座</strong>，替換lí ê封鎖列單。
-    preambles:
-      muting_html: Lí teh-beh kā <strong>%{filename}</strong>內底ê<strong>%{total_items} ê口座</strong><strong>消音</strong>。
   scheduled_statuses:
-    too_soon: 預定PO文ê時間kan-ta tī未來
+    too_soon: Tio̍h用未來ê日期。
   statuses:
     default_language: Kap界面ê語言sio kâng
   two_factor_authentication:

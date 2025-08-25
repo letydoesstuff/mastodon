@@ -43,16 +43,10 @@ class Status < ApplicationRecord
   include Status::SnapshotConcern
   include Status::ThreadingConcern
   include Status::Visibility
+  include Status::InteractionPolicyConcern
 
   MEDIA_ATTACHMENTS_LIMIT = 4
   REMOTE_MEDIA_ATTACHMENTS_LIMIT = 16
-
-  QUOTE_APPROVAL_POLICY_FLAGS = {
-    unknown: (1 << 0),
-    public: (1 << 1),
-    followers: (1 << 2),
-    followed: (1 << 3),
-  }.freeze
 
   rate_limit by: :account, family: :statuses
 
@@ -123,7 +117,10 @@ class Status < ApplicationRecord
   scope :without_replies, -> { not_reply.or(reply_to_account) }
   scope :not_reply, -> { where(reply: false) }
   scope :only_reblogs, -> { where.not(reblog_of_id: nil) }
+  scope :only_polls, -> { where.not(poll_id: nil) }
+  scope :without_polls, -> { where(poll_id: nil) }
   scope :reply_to_account, -> { where(arel_table[:in_reply_to_account_id].eq arel_table[:account_id]) }
+  scope :not_replying_to_account, ->(account) { where.not(in_reply_to_account: account) }
   scope :without_reblogs, -> { where(statuses: { reblog_of_id: nil }) }
   scope :tagged_with, ->(tag_ids) { joins(:statuses_tags).where(statuses_tags: { tag_id: tag_ids }) }
   scope :not_excluded_by_account, ->(account) { where.not(account_id: account.excluded_from_timeline_account_ids) }
@@ -307,6 +304,10 @@ class Status < ApplicationRecord
 
   def favourites_count
     status_stat&.favourites_count || 0
+  end
+
+  def quotes_count
+    status_stat&.quotes_count || 0
   end
 
   # Reblogs count received from an external instance

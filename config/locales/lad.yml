@@ -1262,6 +1262,10 @@ lad:
     basic_information: Enformasyon bazika
     hint_html: "<strong>Personaliza lo ke la djente ve en tu profil publiko i kon tus publikasyones.</strong> Es mas probavle ke otras personas te sigan i enteraktuen kontigo kuando kompletas tu profil i foto."
     other: Otros
+  emoji_styles:
+    auto: Otomatiko
+    native: Nativo
+    twemoji: Twemoji
   errors:
     '400': La solisitasyon ke enviates no fue valida o fue malformada.
     '403': No tienes permiso para ver esta pajina.
@@ -1746,7 +1750,6 @@ lad:
       public: Todos
     title: '%{name}: "%{quote}"'
     visibilities:
-      direct: Direkto
       private: Solo suivantes
       private_long: Solo amostra a tus segidores
       public: Publiko

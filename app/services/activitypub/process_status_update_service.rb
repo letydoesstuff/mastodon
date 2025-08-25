@@ -74,7 +74,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   end
 
   def update_interaction_policies!
-    @status.quote_approval_policy = @status_parser.quote_policy
+    @status.update(quote_approval_policy: @status_parser.quote_policy)
   end
 
   def update_media_attachments!
@@ -85,7 +85,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     as_array(@json['attachment']).each do |attachment|
       media_attachment_parser = ActivityPub::Parser::MediaAttachmentParser.new(attachment)
 
-      next if media_attachment_parser.remote_url.blank? || @next_media_attachments.size > Status::REMOTE_MEDIA_ATTACHMENTS_LIMIT
+      next if media_attachment_parser.remote_url.blank? || @next_media_attachments.size > Status::MEDIA_ATTACHMENTS_LIMIT
 
       begin
         media_attachment   = previous_media_attachments.find { |previous_media_attachment| previous_media_attachment.remote_url == media_attachment_parser.remote_url }
@@ -280,10 +280,10 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     return unless quote_uri.present? && @status.quote.present?
 
     quote = @status.quote
-    return if quote.quoted_status.present? && ActivityPub::TagManager.instance.uri_for(quote.quoted_status) != quote_uri
+    return if quote.quoted_status.present? && (ActivityPub::TagManager.instance.uri_for(quote.quoted_status) != quote_uri || quote.quoted_status.local?)
 
     approval_uri = @status_parser.quote_approval_uri
-    approval_uri = nil if unsupported_uri_scheme?(approval_uri)
+    approval_uri = nil if unsupported_uri_scheme?(approval_uri) || TagManager.instance.local_url?(approval_uri)
 
     quote.update(approval_uri: approval_uri, state: :pending, legacy: @status_parser.legacy_quote?) if quote.approval_uri != @status_parser.quote_approval_uri
 
@@ -295,17 +295,19 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
     if quote_uri.present?
       approval_uri = @status_parser.quote_approval_uri
-      approval_uri = nil if unsupported_uri_scheme?(approval_uri)
+      approval_uri = nil if unsupported_uri_scheme?(approval_uri) || TagManager.instance.local_url?(approval_uri)
 
       if @status.quote.present?
         # If the quoted post has changed, discard the old object and create a new one
         if @status.quote.quoted_status.present? && ActivityPub::TagManager.instance.uri_for(@status.quote.quoted_status) != quote_uri
+          # Revoke the quote while we get a chance… maybe this should be a `before_destroy` hook?
+          RevokeQuoteService.new.call(@status.quote) if @status.quote.quoted_account&.local? && @status.quote.accepted?
           @status.quote.destroy
           quote = Quote.create(status: @status, approval_uri: approval_uri, legacy: @status_parser.legacy_quote?)
           @quote_changed = true
         else
           quote = @status.quote
-          quote.update(approval_uri: approval_uri, state: :pending, legacy: @status_parser.legacy_quote?) if quote.approval_uri != @status_parser.quote_approval_uri
+          quote.update(approval_uri: approval_uri, state: :pending, legacy: @status_parser.legacy_quote?) if quote.approval_uri != approval_uri
         end
       else
         quote = Quote.create(status: @status, approval_uri: approval_uri, legacy: @status_parser.legacy_quote?)

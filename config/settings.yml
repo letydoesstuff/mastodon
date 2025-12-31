@@ -23,7 +23,6 @@ defaults: &defaults
   theme: 'system'
   use_blurhash: true
   trends: true
-  trends_as_landing_page: true
   trendable_by_default: false
   disallowed_hashtags: # space separated string or list of hashtags without the hash
   bootstrap_timeline_accounts: ''
@@ -35,6 +34,7 @@ defaults: &defaults
   backups_retention_period: 7
   captcha_enabled: false
   allow_referrer_origin: false
+  landing_page: 'trends'
 
 development:
   <<: *defaults

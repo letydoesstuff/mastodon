@@ -13,11 +13,11 @@ export function textAtCursorMatchesToken(
   let word: string;
 
   const regex = new RegExp(
-    `[${searchTokens.join('')}${WORD}+-]+(\\s[\\p{Script=Latin}\\p{Script=Cyrillic}\\p{M}]+)?$`,
+`[${searchTokens.join('')}${WORD}+-]+([\\s\\u200B][\\p{Script=Latin}\\p{Script=Cyrillic}\\p{M}]+)?$`,
     'iu',
   );
   const left = str.slice(0, caretPosition).search(regex);
-  const right = str.slice(caretPosition).search(/\s/);
+  const right = str.slice(caretPosition).search(/[\s\u200B]/);
 
   if (right < 0) {
     word = str.slice(left);

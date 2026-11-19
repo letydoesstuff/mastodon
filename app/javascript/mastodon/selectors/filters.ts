@@ -60,7 +60,7 @@ export const selectStatusFilters = createAppSelector(
   (status, filters, currentAccountId, contextType) => {
     const results: FilterShape[] = [];
     let filterAction: 'warn' | 'hide' | null = null;
-    if (!status || !filters || status.account.acct === currentAccountId) {
+    if (!status || !filters) {
       return { filters: results, filterAction };
     }
 
